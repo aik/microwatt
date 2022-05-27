@@ -78,7 +78,9 @@ ln -s micropython/firmware.bin main_ram.bin
 
 ## Synthesis on Xilinx FPGAs using Vivado
 
-- Install Vivado (I'm using the free 2019.1 webpack edition).
+- Install Vivado (I'm using the free webpack edition from Xilinx_Unified_2022.1_0420_0327_Lin64.bin).
+
+- Install the Hardware Server
 
 - Setup Vivado paths:
 
@@ -91,7 +93,7 @@ source /opt/Xilinx/Vivado/2019.1/settings64.sh
 ```
 pip3 install --user -U fusesoc
 ```
-Fedora users can get FuseSoC package via
+Fedora users can get FuseSoC package via (not going to work with Fedora 35 or 36)
 ```
 sudo dnf copr enable sharkcz/danny
 sudo dnf install fusesoc
@@ -136,6 +138,13 @@ fusesoc run --target=nexys_video microwatt
 ```
 make -j$(nproc) check
 ```
+
+## Programming FPGA
+
+Many believe "any FTDI" will do as it works on Xilinx-made development boards. This is not entirely correct and in fact it is quite tricky to find FTDI that actually works. Cheap 1.5$ FTDI FT232RL cannot possibly work, FT232H can but XDS100v2 does not have JTAG on the header. Yet to find a working device.
+
+Altera USB Blaster works with openocd but not Xilinx.
+
 
 ## Issues
 
